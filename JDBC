@@ -1,0 +1,33 @@
+
+package jdbc_v;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.Statement;
+public class Jdbc_v 
+{
+        public static void main(String[] args) 
+    {
+        String url,user,pwd;
+        url="jdbc.sqlserver://localhost:1433;databaseName=JDBCdemo";
+        user="sa";
+        pwd="sasa";
+        
+                try
+                {
+                    Connection con=DriverManager.getConnection(url, user, pwd);
+                    Statement st=con.createStatement();
+                    String q="Select from student";
+                    ResultSet rs=st.executeQuery(q);
+                    while(rs.next())
+                    {
+                        System.out.println("ID is"+rs.getString("id")+"t");
+                        System.out.println("name is"+rs.getString("name"));
+                    }
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e);
+                }
+    }
+}
